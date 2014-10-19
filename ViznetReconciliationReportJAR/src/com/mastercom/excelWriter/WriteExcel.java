@@ -5,16 +5,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 import jxl.CellView;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
+import jxl.format.CellFormat;
+import jxl.format.Colour;
+import jxl.format.Pattern;
 import jxl.format.UnderlineStyle;
 import jxl.write.Label;
-import jxl.write.Number;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
@@ -28,6 +31,7 @@ public class WriteExcel {
   private WritableCellFormat timesBoldUnderline;
   private WritableCellFormat times;
   private String inputFile;
+  private static org.apache.log4j.Logger logger = Logger.getLogger("com.second");
   
   public WriteExcel(){
 	  
@@ -45,31 +49,75 @@ public void setOutputFile(String inputFile) {
     wbSettings.setLocale(new Locale("en", "EN"));
 
     WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
-    workbook.createSheet("Report", 0);
-    WritableSheet excelSheet = workbook.getSheet(0);
+    workbook.createSheet("Metasolve Count", 0);
+    WritableSheet excelFirstSheet = workbook.getSheet(0);
+    createLabelFirstrow(excelFirstSheet);
+    createFirstContent(excelFirstSheet,selectOrderIDList,ginvoiceOrderIds,wqmsOrderIDList,errorLogQueryList);
+    workbook.createSheet("Detail Report", 1);
+    WritableSheet excelSheet = workbook.getSheet(1);
     createLabel(excelSheet);
     createContent(excelSheet,selectOrderIDList,ginvoiceOrderIds,wqmsOrderIDList,errorLogQueryList);
-
+    logger.info("Added 2 Sheets in Excel Sheet ");
     workbook.write();
     workbook.close();
   }
+  private void createLabelFirstrow(WritableSheet sheet)
+	      throws WriteException {
+	    // Lets create a times font
+	    WritableFont times12pt = new WritableFont(WritableFont.TIMES, 12);
+	    // Define the cell format
+	    times = new WritableCellFormat(times12pt);
+	    // Lets automatically wrap the cells
+	    times.setWrap(true);
+
+	    // create create a bold font with unterlines
+	    WritableFont times10ptBoldUnderline = new WritableFont(WritableFont.TIMES, 12, WritableFont.BOLD, false,
+	        UnderlineStyle.NO_UNDERLINE);
+	    timesBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
+	    // Lets automatically wrap the cells
+	  //  timesBoldUnderline.setWrap(true);
+	    timesBoldUnderline.setBackground(Colour.YELLOW, Pattern.SOLID);
+	    CellView cv = new CellView();
+	    cv.setFormat(times);
+	    cv.setFormat(timesBoldUnderline);
+	    cv.setAutosize(true);
+	   // cv.setFormat(CellFormat)
+	    // Write a few headers
+	    addCaption(sheet, 6, 7, "Metasolve Total Order ID Status");
+	   // addCaption(sheet, 7, 7, "               ");
+	    sheet.mergeCells(6, 7, 7, 7);
+	    addCaption(sheet, 6, 8, "Total Order ID");
+	    addCaption(sheet, 6, 9, "Integration Order ID");
+	    addCaption(sheet, 6, 10, "WQMS Order ID");
+		 addCaption(sheet, 6, 11, "Error Order ID");
+
+	  }
+  
+  private void createFirstContent(WritableSheet sheet,ArrayList<String> selectOrderIDList,ArrayList<String> ginvoiceOrderIds,ArrayList<String> wqmsOrderIDList ,HashMap<String,String> errorLogQueryList) throws WriteException,
+  RowsExceededException {
+
+		 addLabel(sheet,7,8,""+selectOrderIDList.size());
+		 addLabel(sheet,7,9,""+ginvoiceOrderIds.size());
+		 addLabel(sheet,7,10,""+wqmsOrderIDList.size());
+		 addLabel(sheet,7,11,""+errorLogQueryList.size());
+	}
 
   private void createLabel(WritableSheet sheet)
       throws WriteException {
     // Lets create a times font
-    WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
+    WritableFont times10pt = new WritableFont(WritableFont.TIMES, 11);
     // Define the cell format
     times = new WritableCellFormat(times10pt);
     // Lets automatically wrap the cells
-    times.setWrap(true);
+    //times.setWrap(true);
 
     // create create a bold font with unterlines
-    WritableFont times10ptBoldUnderline = new WritableFont(WritableFont.TIMES, 10, WritableFont.BOLD, false,
+    WritableFont times10ptBoldUnderline = new WritableFont(WritableFont.TIMES, 11, WritableFont.BOLD, false,
         UnderlineStyle.SINGLE);
     timesBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
     // Lets automatically wrap the cells
-    timesBoldUnderline.setWrap(true);
-
+   // timesBoldUnderline.setWrap(true);
+    timesBoldUnderline.setBackground(Colour.YELLOW, Pattern.NONE);
     CellView cv = new CellView();
     cv.setFormat(times);
     cv.setFormat(timesBoldUnderline);
@@ -82,26 +130,25 @@ public void setOutputFile(String inputFile) {
 	 addCaption(sheet, 3, 0, "Error Order ID");
 
   }
-
+ 
   private void createContent(WritableSheet sheet,ArrayList<String> selectOrderIDList,ArrayList<String> ginvoiceOrderIds,ArrayList<String> wqmsOrderIDList ,HashMap<String,String> errorLogQueryList) throws WriteException,
       RowsExceededException {
 
       // First column
 //	  Iterator<String> selectOrderIDListList = selectOrderIDList.listIterator();
-		int selectOrderIDCounter = 0;
 		System.out.println("length"+selectOrderIDList);
 		for(int count = 1 ; count<selectOrderIDList.size();count++){
-			System.out.println("Element count "+count +"="+selectOrderIDList.get(count));
+			//System.out.println("Element count "+count +"="+selectOrderIDList.get(count));
 			//selectOrderIDCounter++
 			 addLabel(sheet,0,count,selectOrderIDList.get(count));
 		}
 		for(int count = 1 ; count<ginvoiceOrderIds.size();count++){
-			System.out.println("Element count "+count +"="+ginvoiceOrderIds.get(count));
+			//System.out.println("Element count "+count +"="+ginvoiceOrderIds.get(count));
 			//selectOrderIDCounter++
 			 addLabel(sheet,1,count,ginvoiceOrderIds.get(count));
 		}
 		for(int count = 1 ; count<wqmsOrderIDList.size();count++){
-			System.out.println("Element count "+count +"="+wqmsOrderIDList.get(count));
+			//System.out.println("Element count "+count +"="+wqmsOrderIDList.get(count));
 			//selectOrderIDCounter++
 			 addLabel(sheet,2,count,wqmsOrderIDList.get(count));
 		}
@@ -111,18 +158,7 @@ public void setOutputFile(String inputFile) {
 			errorEntryCounter ++;
 			 addLabel(sheet,3,errorEntryCounter,errorEntry.getKey() +", Reason :"+ errorEntry.getValue());
 		}
-//		while (selectOrderIDListList.hasNext()) {
-//			selectOrderIDCounter ++;
-//			 System.out.println("selectOrderIDCounter"+selectOrderIDCounter);
-//			//metasolveReconbw.write(selectOrderIDListList.next()+"\n");
-//			 //addLabel(excelSheet, 0, selectOrderIDCounter,selectOrderIDListList.next());
-//			 addLabel(sheet,selectOrderIDCounter, 0, "Boring text,hello " + 1);
-//			
-//		}
-     // addLabel(sheet, 0, 1, "Boring text,hello " + 1);
-      // Second column
-    // addLabel(sheet, 1, 1, "Another text");
-    // addLabel(sheet, 2, 1, "Another text");
+
   }
 
   private void addCaption(WritableSheet sheet, int column, int row, String s)
