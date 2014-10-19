@@ -32,9 +32,10 @@ public class ViznetReconciliationReportJAR {
 	/**
 	 * @param args
 	 */
-	private static Logger logger = Logger.getRootLogger();
-	private String livePath = "D:/ORDERFILES/Reconcilation/CHANGED/";
-	//private String livePath = "/IBM/apps/wqms/Viznet/ORDERFILES/";
+	//private static Logger logger = Logger.getRootLogger();
+	private static org.apache.log4j.Logger logger = Logger.getLogger("com.first");
+	//private String livePath = "D:/ORDERFILES/Reconcilation/CHANGED/";
+	private String livePath = "/IBM/apps/wqms/Viznet/ORDERFILES/";
 	Connection conn = null;
 
 	public void accessFilesFromLocal() {
@@ -201,7 +202,6 @@ public class ViznetReconciliationReportJAR {
 				// System.out.println("ViznetName="+ViznetName+":ViznetData"+ViznetData);
 				String ViznetDataArray[] = ViznetData.split(":");
 				tabledata += "<td nowrap>";
-				String faieldone = "";
 				for (int ViznetDataArrayCounter = 0; ViznetDataArrayCounter < ViznetDataArray.length; ViznetDataArrayCounter++) {
 					tabledata += "" + ViznetDataArray[ViznetDataArrayCounter]
 							+ "<br>";
@@ -241,12 +241,11 @@ public class ViznetReconciliationReportJAR {
 							"") + "\n";
 			// System.out.println(csvFinalData);
 			// //////////////////////Writing Process
-			SimpleDateFormat sdfCalendar = new SimpleDateFormat("yyyy-MM-dd");
 			Date dateCalendar = new Date();
 			String timeCalendar = sdf.format(dateCalendar);
 			// System.out.println("time"+time);
 			// ///////////////////////////////////////////////////////////////////////////
-			File file = new File(livePath + timeFolder+"//Mail_Attchment_"
+			File file = new File(livePath + timeFolder+"/Mail_Attchment_"
 					+ timeCalendar + ".xls");
 			logger.info("After Change");
 			// if file doesnt exists, then create it
@@ -363,7 +362,6 @@ public class ViznetReconciliationReportJAR {
 				created_date = rst.getString(1);
 				modified_date = rst.getString(2);
 			}
-			Calendar cal = Calendar.getInstance();
 			// cal.setTime(new
 			// SimpleDateFormat("dd-MMM-yyyy").parse(created_date));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -401,14 +399,12 @@ public class ViznetReconciliationReportJAR {
 					.prepareStatement(bpmErrorQuery);
 			pstCheckinBpmLogTable.setString(1, orderIdIndex);
 			ResultSet bpmResultSet = pstCheckinBpmLogTable.executeQuery();
-			Calendar cal = Calendar.getInstance();
 			// cal.setTime(new
 			// SimpleDateFormat("dd-MMM-yyyy").parse(created_date));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
 			String time = sdf.format(date);
 			String ErrorParseDate = "";
-			String errorMsg = "";
 			bmpErrorStatus[0] = "false";
 			bmpErrorStatus[1] = "Not Processed - as per Requirement";
 			// bpmResultSet.beforeFirst();
@@ -436,8 +432,6 @@ public class ViznetReconciliationReportJAR {
 			String csvFileToRead, int orderIdIndex, int enquiryTypeIndex,
 			String OrderID, String conditionField, String queryType) {
 		BufferedReader br = null;
-		boolean reprocessStatus = false;
-		String line = "";
 		String splitBy = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
 		String updateLine = "";
 		int updateLineCounter = 0;
@@ -520,9 +514,7 @@ public class ViznetReconciliationReportJAR {
 		try {
 			logger.info("Starting File reading for file :" + csvFileToRead + "");
 			br = new BufferedReader(new FileReader(csvFileToRead));
-			String[] writeMap = new String[5000];
 			HashMap<Integer, Integer> modifyCount = new HashMap<Integer, Integer>();
-			int countArray[] = new int[5000];
 			int lineCounter = 0;
 			int srnoCount = 0;
 			String updateLine = "";
@@ -804,13 +796,19 @@ public class ViznetReconciliationReportJAR {
 		String jarStarttime = simpledateformat.format(startDate);
 		logger.info("*********************************************************************");
 		logger.info("Jar File Has Started for Date :"+jarStarttime);
-		//viZnetOrderprocess.accessFilesFromLocal();
+		viZnetOrderprocess.accessFilesFromLocal();
 		viznetRecon.accessFilesFromLocal();
 		Date endDate = new Date();
 		String jarEndtime = simpledateformat.format(endDate);
 		logger.info("Jar File Completed at"+jarEndtime);
-		
-
+		logger.info("MetaSolveReconcilation Has Started");
+		MetaSolveReconcilationReportJAR metaSolve = new MetaSolveReconcilationReportJAR();
+		try {
+			metaSolve.CheckMetasolve();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
