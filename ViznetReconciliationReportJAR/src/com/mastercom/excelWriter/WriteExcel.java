@@ -136,7 +136,6 @@ public void setOutputFile(String inputFile) {
 
       // First column
 //	  Iterator<String> selectOrderIDListList = selectOrderIDList.listIterator();
-		System.out.println("length"+selectOrderIDList);
 		for(int count = 1 ; count<selectOrderIDList.size();count++){
 			//System.out.println("Element count "+count +"="+selectOrderIDList.get(count));
 			//selectOrderIDCounter++
