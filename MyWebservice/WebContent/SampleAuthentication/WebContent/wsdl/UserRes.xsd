@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://authentication.user.com" elementFormDefault="qualified" targetNamespace="http://authentication.user.com">
+		<element name="SessionTokenId">
+		<simpleType>
+			<restriction base="string">
+				<maxLength value="50"/>
+				<minLength value="0"/>
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="ResponseCode" nillable="false">
+		<simpleType>
+			<restriction base="string">
+				<maxLength value="10"/>
+				<minLength value="1"/>
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="ResponseMessage" nillable="true">
+		<simpleType>
+			<restriction base="string">
+				<maxLength value="256"/>
+				<minLength value="1"/>
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="UserRes">
+		<complexType>
+				<sequence>
+					<element ref="tns:ResponseCode"/>
+					<element ref="tns:ResponseMessage"/>
+					<element ref="tns:SessionTokenId"/>
+				</sequence>
+		</complexType>
+	</element>
+		
+		
+		
+		
+		
+		
+</schema>

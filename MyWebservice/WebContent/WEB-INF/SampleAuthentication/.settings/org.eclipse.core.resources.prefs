@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/com/user/authentication/Authentication.java=UTF-8
+encoding//src/com/user/authentication/AuthenticationLocator.java=UTF-8
+encoding//src/com/user/authentication/AuthenticationPort.java=UTF-8
+encoding//src/com/user/authentication/AuthenticationSOAPBindingImpl.java=UTF-8
+encoding//src/com/user/authentication/AuthenticationSOAPBindingSkeleton.java=UTF-8
+encoding//src/com/user/authentication/AuthenticationSOAPBindingStub.java=UTF-8
+encoding//src/com/user/authentication/UserReq.java=UTF-8
+encoding//src/com/user/authentication/UserRes.java=UTF-8

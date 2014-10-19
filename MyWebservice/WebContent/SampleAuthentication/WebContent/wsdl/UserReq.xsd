@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"    
+    xmlns:tns="http://authentication.user.com" elementFormDefault="qualified" 
+    targetNamespace="http://authentication.user.com">
+		
+		<element name="UserName">
+		<simpleType>
+			<restriction base="string">
+				<maxLength value="50"/>
+				<minLength value="0"/>
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="Password">
+		<simpleType>
+			<restriction base="string">
+				<maxLength value="50"/>
+				<minLength value="0"/>
+			</restriction>
+		</simpleType>
+	</element>
+	
+	<element name="UserReq">
+		<complexType>
+			<sequence>
+				<element ref="tns:UserName"/>						
+				<element ref="tns:Password"/>
+			</sequence>
+		</complexType>
+	</element>
+		
+</schema>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.example.org/Authentication/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Authentication"
+	xmlns:ns1="http://schemas.xmlsoap.org/soap/encoding/"
+	targetNamespace="http://www.example.org/Authentication/">
+	
+	<wsdl:types >
+		<xsd:schema targetNamespace="http://www.example.org/Authentication/">
+			<xsd:include schemaLocation="UserReq.xsd"/>
+			<xsd:include schemaLocation="UserRes.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="UserReq">
+		<wsdl:part element="tns:UserReq" name="UserReq" />
+	</wsdl:message>
+	<wsdl:message name="UserRes">
+		<wsdl:part element="tns:UserRes" name="UserRes" />
+	</wsdl:message>
+	
+	<wsdl:portType name="AuthenticationPort">
+		<wsdl:operation name="Authentication">
+			<wsdl:input message="tns:UserReq" name="UserRequest" />
+			<wsdl:output message="tns:UserRes" name="UserResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="AuthenticationSOAP" type="tns:AuthenticationPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="Authentication">
+			<soap:operation soapAction="" />
+			<soap:operation style="document" />
+			<wsdl:input name="UserReq">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UserRes">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Authentication">
+		<wsdl:port binding="tns:AuthenticationSOAP" name="Authentication">
+			<soap:address location="http://localhost:8080/Mywebservice/services/Authentication" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

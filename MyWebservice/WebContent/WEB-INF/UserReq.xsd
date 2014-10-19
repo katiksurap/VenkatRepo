@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+ xmlns:tns="http://www.example.org/Authentication/" elementFormDefault="qualified"
+ targetNamespace="http://www.example.org/Authentication/">
+<element name="UserName">
+<simpleType>
+<restriction base="string">
+<maxLength value="50"/>
+</restriction>
+</simpleType>
+</element>
+
+<element name="UserReq">
+<complexType>
+<sequence>
+<element ref="tns:UserName"/>
+</sequence>
+</complexType>
+</element>
+</schema>
