@@ -6,8 +6,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,14 +24,16 @@ public class MetaSolveReconcilationReportJAR {
 	 * @param args
 	 */
 
-	private static org.apache.log4j.Logger logger = Logger.getLogger("com.second");
+	private static org.apache.log4j.Logger logger = Logger
+			.getLogger("com.second");
 	//private String livePath = "D:/ORDERFILES/Reconcilation/";
 	private String livePath = "/IBM/apps/wqms/Viznet/ORDERFILES/";
 	Connection conn, connWqms = null;
 
 	public void CheckMetasolve() throws SQLException {
 
-		SimpleDateFormat sdateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+		SimpleDateFormat sdateformat = new SimpleDateFormat(
+				"yyyy-MM-dd HH:mm:ss.S");
 		Date sDate = new Date();
 		String jarStarttime = sdateformat.format(sDate);
 		logger.info("*********************************************************************");
@@ -50,10 +54,10 @@ public class MetaSolveReconcilationReportJAR {
 
 		try {
 
-			SimpleDateFormat simpledateformat = new SimpleDateFormat(
-					"dd-MMM-yyyy");
-			Date startDate = new Date();
-			String jarSeachTime = simpledateformat.format(startDate);
+			Calendar cal = Calendar.getInstance();
+			DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+			cal.add(Calendar.DATE, -1);
+			String jarSeachTime = dateFormat.format(cal.getTime());
 			// #########################
 			ArrayList<String> selectOrderIDList = new ArrayList<String>();
 			String checkQuery = "select sr.project_identification as copf_id,"
@@ -144,7 +148,7 @@ public class MetaSolveReconcilationReportJAR {
 			while (wqmsIDQueyRst.next()) {
 				wqmsOrderIDList.add(wqmsIDQueyRst.getString(1));
 			}
-			
+
 			String errorLogQuery = "select application_identifier1 as order_id,created_date,error_short_msg,error_code from wqms.bpm_error_log "
 					+ "where application_identifier1 in ("
 					+ wqmsIDQueyString
@@ -158,8 +162,9 @@ public class MetaSolveReconcilationReportJAR {
 			logger.info("4. Error Log errorLogQueryRst" + errorLogQueryRst);
 			HashMap<String, String> errorLogQueryList = new HashMap<String, String>();
 			while (errorLogQueryRst.next()) {
-				errorLogQueryList.put(errorLogQueryRst.getString(1),
-						errorLogQueryRst.getString(3));
+				if(!errorLogQueryRst.getString(3).contains("no WQMS Id")){
+				errorLogQueryList.put(errorLogQueryRst.getString(1),errorLogQueryRst.getString(3));
+			}
 			}
 
 			WriteExcel test = new WriteExcel();
@@ -169,28 +174,28 @@ public class MetaSolveReconcilationReportJAR {
 			File fileFolder = new File((livePath + timeFolder));
 			if (!fileFolder.exists()) {
 				if (fileFolder.mkdir()) {
-					//System.out
-							//.println("Directory is created with Date for Metasolve: "
-									//+ timeFolder);
+					// System.out
+					// .println("Directory is created with Date for Metasolve: "
+					// + timeFolder);
 					logger.info("Directory is created with Date for Metasolve: "
 							+ timeFolder);
 				} else {
-					//System.out
-							//.println("Failed to create directory with Date for MetaSolve aleady its there :"
-									//+ timeFolder);
+					// System.out
+					// .println("Failed to create directory with Date for MetaSolve aleady its there :"
+					// + timeFolder);
 					logger.info("Failed to create directory with Date for MetaSolve aleady its there :"
 							+ timeFolder);
 				}
 			} else {
-				//System.out.println("Folder MetaSolve aleady its there :"
-						//+ timeFolder);
+				// System.out.println("Folder MetaSolve aleady its there :"
+				// + timeFolder);
 				logger.info("Failed to create directory with Date for MetaSolve aleady its there :"
 						+ timeFolder);
 			}
 			logger.info("Total Order ID in Main Metasolve table = "
 					+ selectOrderIDList.size());
 			logger.info("Total Order ID in Integration table = "
-					+  ginvoiceOrderIds.size());
+					+ ginvoiceOrderIds.size());
 			logger.info("Total Order ID in WQMS table = "
 					+ wqmsOrderIDList.size());
 			logger.info("Total Order ID in WQMS.Error Log table = "
