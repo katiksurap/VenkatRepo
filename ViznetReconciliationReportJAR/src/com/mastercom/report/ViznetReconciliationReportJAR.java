@@ -14,7 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,13 +40,14 @@ public class ViznetReconciliationReportJAR {
 	public void accessFilesFromLocal() {
 		
 		logger.info("Thread.Wait for 10 minutes for making sure the Updated files copied to /IBM/apps/wqms/Viznet/ORDERFILES/");
-//		try {
-//			Thread.sleep(600000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			logger.error(e.getMessage());
-//		}
+		try {
+			Thread.sleep(600000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			logger.error(e.getMessage());
+		}
+		
 		try {
 			SimpleDateFormat sdfFolder = new SimpleDateFormat("dd-MMM-yyyy");
 			Date dateFolder = new Date();
@@ -800,7 +800,7 @@ public class ViznetReconciliationReportJAR {
 		viznetRecon.accessFilesFromLocal();
 		Date endDate = new Date();
 		String jarEndtime = simpledateformat.format(endDate);
-		logger.info("Jar File Completed at"+jarEndtime);
+		logger.info("Jar File Completed at "+jarEndtime);
 		logger.info("MetaSolveReconcilation Has Started");
 		MetaSolveReconcilationReportJAR metaSolve = new MetaSolveReconcilationReportJAR();
 		try {
@@ -808,6 +808,7 @@ public class ViznetReconciliationReportJAR {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.info(e.getMessage());
 		}
 	}
 
