@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 import jxl.CellView;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
-import jxl.format.CellFormat;
 import jxl.format.Colour;
 import jxl.format.Pattern;
 import jxl.format.UnderlineStyle;
