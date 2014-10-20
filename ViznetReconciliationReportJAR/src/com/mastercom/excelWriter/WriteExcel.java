@@ -76,20 +76,21 @@ public void setOutputFile(String inputFile) {
 	    timesBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
 	    // Lets automatically wrap the cells
 	  //  timesBoldUnderline.setWrap(true);
-	    timesBoldUnderline.setBackground(Colour.YELLOW, Pattern.SOLID);
+	    timesBoldUnderline.setBackground(Colour.SKY_BLUE, Pattern.SOLID);
 	    CellView cv = new CellView();
 	    cv.setFormat(times);
 	    cv.setFormat(timesBoldUnderline);
 	    cv.setAutosize(true);
 	   // cv.setFormat(CellFormat)
 	    // Write a few headers
-	    addCaption(sheet, 6, 7, "Metasolve Total Order ID Status");
+	    addCaption(sheet, 6, 7, "Metasolve  Order ID Status");
 	   // addCaption(sheet, 7, 7, "               ");
 	    sheet.mergeCells(6, 7, 7, 7);
-	    addCaption(sheet, 6, 8, "Total Order ID");
+	    addCaption(sheet, 6, 8, "GInvoice Order ID");
 	    addCaption(sheet, 6, 9, "Integration Order ID");
 	    addCaption(sheet, 6, 10, "WQMS Order ID");
-		 addCaption(sheet, 6, 11, "Error Order ID");
+		addCaption(sheet, 6, 11, "Error Order ID");
+		addCaption(sheet, 6, 12, "Grand Total");
 
 	  }
   
@@ -100,6 +101,8 @@ public void setOutputFile(String inputFile) {
 		 addLabel(sheet,7,9,""+ginvoiceOrderIds.size());
 		 addLabel(sheet,7,10,""+wqmsOrderIDList.size());
 		 addLabel(sheet,7,11,""+errorLogQueryList.size());
+		 int totalCount = wqmsOrderIDList.size()+errorLogQueryList.size();
+		 addLabel(sheet,7,12,""+totalCount);
 	}
 
   private void createLabel(WritableSheet sheet)
@@ -117,14 +120,14 @@ public void setOutputFile(String inputFile) {
     timesBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
     // Lets automatically wrap the cells
    // timesBoldUnderline.setWrap(true);
-    timesBoldUnderline.setBackground(Colour.YELLOW, Pattern.NONE);
+    timesBoldUnderline.setBackground(Colour.YELLOW, Pattern.SOLID);
     CellView cv = new CellView();
     cv.setFormat(times);
     cv.setFormat(timesBoldUnderline);
     cv.setAutosize(true);
 
     // Write a few headers
-    addCaption(sheet, 0, 0, "Total Order ID");
+    addCaption(sheet, 0, 0, "GInvoice Order ID");
     addCaption(sheet, 1, 0, "Integration Order ID");
     addCaption(sheet, 2, 0, "WQMS Order ID");
 	 addCaption(sheet, 3, 0, "Error Order ID");
