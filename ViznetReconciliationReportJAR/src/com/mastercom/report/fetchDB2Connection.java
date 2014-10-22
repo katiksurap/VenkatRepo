@@ -8,7 +8,7 @@ public class fetchDB2Connection {
 
 	/**
 	 * @param args
-	 * @throws SQLException
+	 * @throws SQLExceptio
 	 */
 	public Connection getDB2Connection() throws SQLException{
 		String url = "";
