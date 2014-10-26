@@ -26,8 +26,8 @@ public class MetaSolveReconcilationReportJAR {
 
 	private static org.apache.log4j.Logger logger = Logger
 			.getLogger("com.second");
-	//private String livePath = "D:/ORDERFILES/Reconcilation/";
-	private String livePath = "/IBM/apps/wqms/Viznet/ORDERFILES/";
+	private String livePath = "D:/ORDERFILES/Reconcilation/";
+	//private String livePath = "/IBM/apps/wqms/Viznet/ORDERFILES/";
 	Connection conn, connWqms = null;
 
 	public void CheckMetasolve() throws SQLException {
@@ -75,8 +75,7 @@ public class MetaSolveReconcilationReportJAR {
 					+ " and nvl(sr.supplement_type,2)!= 1"
 					+ " AND NOT EXISTS (SELECT 1 FROM CUST_ACCT CA , asap.CUSTOMER_LOOKUP CL WHERE CA.CUST_ACCT_ID = SR.CUST_ACCT_ID"
 					+ " and upper(ca.company_name) = upper(cl.company_name))"
-					+ " and trunc(t.actual_release_date) in ('" + jarSeachTime
-					+ "')";
+					+ " and trunc(t.actual_release_date) in ('23-Oct-2014')";
 			pst = conn.prepareStatement(checkQuery);
 			logger.info("1. Metasolve Query = " + checkQuery);
 			ResultSet getOrderIDResuletSet = pst.executeQuery();

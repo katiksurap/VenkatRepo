@@ -1,24 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Process Termination Portal</title>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		/* For zebra striping */
-		$("table tr:nth-child(odd)").addClass("odd-row");
-		/* For cell text alignment */
-		$("table td:first-child, table th:first-child").addClass("first");
-		/* For removing the last border */
-		$("table td:last-child, table th:last-child").addClass("last");
-	});
-</script>
-
-<style type="text/css">
+@CHARSET "ISO-8859-1";
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
 	{
 	margin: 0;
@@ -57,7 +37,7 @@ table {
 	border: 1px solid #d3d3d3;
 	background: #fefefe;
 	width: 100%;
-	margin: 5% auto 0;
+	/*margin: 5% auto 0;*/
 	-moz-border-radius: 5px; /* FF1+ */
 	-webkit-border-radius: 5px; /* Saf3-4 */
 	border-radius: 5px;
@@ -167,80 +147,43 @@ tr:last-child td.last {
 	top:1px;
 }
 
-</style>
-<script type="text/javascript">
-function getid(){
-	var lines = document.getElementById("wqmsidmul").value.split('\n');
-	//alert(lines.length);
-	var wqmsidlen= lines.length - 1 ;
-	document.getElementById("totalwqmsid").innerHTML = "Total Number of WQMS ID = "+wqmsidlen;
-	//var wqmsid = '';
-	//for(var g= 1;g<lines.length;g++){
-	//	wqmsid += ":" + lines[g] ;
-	//}
-	//wqmsid = wqmsid.replace("undefined:","");
-	//alert(wqmsid);
-	//document.getElementById("wqmshidden").vaule = wqmsid;
-	//alert(document.getElementById("wqmshidden").vaule);
+.mySelect {
+	-moz-box-shadow: 0px 3px 24px 3px #d1dbce;
+	-webkit-box-shadow: 0px 3px 24px 3px #d1dbce;
+	box-shadow: 0px 3px 24px 3px #d1dbce;
+	background-color:#aaadab;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #969996;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Georgia;
+	font-size:17px;
+	font-weight:bold;
+	padding:16px 11px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
 }
-function changeid(value)	{
-	//alert(value);
-	if(value == "single"){
-		document.getElementById("wqmsdis").innerHTML="<input type='text' name='wqmsidsin' id='wqmsidsin'/>";
-	}
-	if(value == "multiple")
-		document.getElementById("wqmsdis").innerHTML="<textarea rows='4' cols='30' id='wqmsidmul' name='wqmsidmul' onkeyup='getid()''></textarea>";
-	}
-	function validate(){
-		
-	}
-</script>
-</head>
-<body style="background: url("images/repeat_bg.gif") 0px 0px
-	repeat;margin: 0px;display:block;">
-	<img alt="IBMPortal" src="logo-header-process-admin.png">
 
-	<div align="center" id="content">
-		<form action="takeaction.jsp" method="post" onsubmit="validate()">
-		<table>
-		<tr>
-		<td>
-			<table border="1">
-				<tr>
-					<th colspan="3" align="center" ><span style="margin-left: 150px;"><b>Process Termination Portal</b></span></th>
-				</tr>
-				<tr>
-					<th>TATA ID :</th>
-					<td><input type="text" id="tataid" name="tataid" /></td>
-				</tr>
-				<tr>
-					<th>TICKET NUMBER :</th>
-					<td><input type="text" id="ticketno" name="ticketno" /></td>
-				</tr>
-				<tr>
-					<th>ID TYPE</th>
-					<td>
-					<input type="radio" value="single" checked name="choosetype" onclick="changeid(this.value)">ONE WQMS ID</option>
-					<input type="radio" value="multiple" name="choosetype" onclick="changeid(this.value)">Multiple WQMS ID's</option>
-					</td>
-				</tr>
-				<tr>
-				<input type="hidden" id="wqmshidden" name="wqmshidden" />
-					<th valign="top" style="vertical-align: middle;">WQMS ID(s) :<div id="totalwqmsid" style="color: red"></div></th>
-					<td id="wqmsdis"><input type="text" name="wqmsidsin" id="wqmsidsin"/>
-					</td>
-				</tr>
-				<tr><td colspan="2" ><input type="submit" class="myButton" style="margin-left: 150px"/></td></tr>
-			</table>
-			<td>
-			<td>
-			
-			</td>
-			</tr>
-			
-			</table>
-		</form>
-	</div>
-
-</body>
-</html>
+.mySelect:active {
+	position:relative;
+	top:1px;
+}
+.custom-combobox {
+    position: relative;
+    display: inline-block;
+  }
+  .custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+  }
+  .custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+  }
+  
