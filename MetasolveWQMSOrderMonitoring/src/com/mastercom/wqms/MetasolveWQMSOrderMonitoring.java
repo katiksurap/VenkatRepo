@@ -40,17 +40,17 @@ public class MetasolveWQMSOrderMonitoring {
 					nul = getCountForNullResultset.getString(1);
 					if (querLoopValues.contains("Failed")) {
 						System.out
-								.println("FAILED COUNT :" + nul + "\n");
+								.println("FAILED COUNT (These Cases were not yet Entered in WQMS ) :" + nul + "\n");
 
 					} else if (querLoopValues.contains("null")) {
-						System.out.println("NULL COUNT :" + nul + "\n");
+						System.out.println("NULL COUNT (These cases are Under process in WQMS , if count is frequently more than 0 , WQMS /Metasolve Team Should look Into this ) :" + nul + "\n");
 
 					} else if (querLoopValues.contains("WSFail")) {
 						System.out
-								.println("WSFAIL COUNT :" + nul + "\n");
+								.println("WSFAIL COUNT (These Cases Web Service Failure , WQMS System will automatically reprocess these cases ) :" + nul + "\n");
 
 					} else if (querLoopValues.contains("Success")) {
-						System.out.println("SUCCESS COUNT :" + nul
+						System.out.println("SUCCESS COUNT (These Cases are Matching with Metasolve and WQMS ) :" + nul
 								+ "\n");
 
 					}

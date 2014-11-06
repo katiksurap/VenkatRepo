@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SfdcRootNodeGroup>
+
+	<SfdcSegment description="Cipris">
+		<SfdcServiceManagementCategory
+			description="(blank)">Enterprise
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="CSO">
+		<SfdcServiceManagementCategory
+			description="Standard">Enterprise
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">Enterprise
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="Enterprise">
+		<SfdcServiceManagementCategory
+			description="Normal">Enterprise
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Platinum">Enterprise Platinum
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Priority">Enterprise Priority
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Standard">Enterprise
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Top 10">Enterprise
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">Enterprise
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="GNS">
+		<SfdcServiceManagementCategory
+			description="(blank)">Enterprise
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="GVS">
+		<SfdcServiceManagementCategory
+			description="Standard">GVS
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">GVS
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="Internal">
+		<SfdcServiceManagementCategory
+			description="Standard">Enterprise
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">Enterprise
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="MES">
+		<SfdcServiceManagementCategory
+			description="Next-Gen">Next-Gen
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Normal">Enterprise
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Platinum">Enterprise Platinum
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Priority">Enterprise Priority
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Standard">Enterprise
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Top 10">Enterprise
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">Enterprise
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="Mobile">
+		<SfdcServiceManagementCategory
+			description="Normal">Carrier
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Platinum">Carrier Platinum
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Priority">Carrier Priority
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Standard">Carrier
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">Carrier
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="Next-Gen">
+		<SfdcServiceManagementCategory
+			description="Next-Gen">Next-Gen
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Platinum">Next-Gen
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Priority">Next-Gen
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Standard">Next-Gen
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Top 10">Next-Gen
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">Next-Gen
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="Other">
+		<SfdcServiceManagementCategory
+			description="Standard">Enterprise
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">Enterprise
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="Service Provider">
+		<SfdcServiceManagementCategory
+			description="Normal">Enterprise
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Platinum">Carrier Platinum
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Priority">Carrier Priority
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Standard">Carrier
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Top 10">Carrier
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">Carrier
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="SMB">
+		<SfdcServiceManagementCategory
+			description="Standard">SMB
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Top 10">SMB
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">SMB
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="TCTS">
+		<SfdcServiceManagementCategory
+			description="Standard">Group
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="TCTSL">
+		<SfdcServiceManagementCategory
+			description="Platinum">Group
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Standard">Group
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)">Group
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+	
+	<SfdcSegment description="(blank)">
+		<SfdcServiceManagementCategory
+			description="Platinum"> 
+		
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Priority"> 
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="Standard"> 
+		</SfdcServiceManagementCategory>
+		<SfdcServiceManagementCategory
+			description="(blank)"> 
+		</SfdcServiceManagementCategory>
+	</SfdcSegment>
+	
+</SfdcRootNodeGroup>

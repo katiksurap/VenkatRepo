@@ -1,4 +1,3 @@
-<%@page import="org.apache.log4j.Logger"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Connection"%>
@@ -14,7 +13,7 @@
 </head>
 <body>
 <%
-Logger logger = Logger.getRootLogger();
+//Logger logger = Logger.getRootLogger();
 String tataid = request.getParameter("tataid");
 String ticketno = request.getParameter("ticketno");
 String choosetype = request.getParameter("choosetype");
@@ -84,7 +83,7 @@ String responseHTML = "<div style=''>";
 
 for(int displayCounter = 0 ;displayCounter<arrList.size(); displayCounter++){
 	responseHTML += arrList.get(displayCounter)+"<br>";
-	logger.info(arrList.get(displayCounter));
+	//logger.info(arrList.get(displayCounter));
 }
 responseHTML +="</div>";
 response.sendRedirect("index.jsp?responseHTML="+responseHTML);
